@@ -10,6 +10,7 @@ module com.inkera {
     opens com.inkera to javafx.fxml;
     opens com.inkera.ui.controllers to javafx.fxml; // GÜNCELLENDİ
     opens com.inkera.core.models to com.google.gson;
+    opens com.inkera.core.config to com.google.gson;
     
     // Dış dünyaya aç
     exports com.inkera;

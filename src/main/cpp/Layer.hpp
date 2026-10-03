@@ -10,51 +10,95 @@ class Layer {
 private:
     int width;
     int height;
-    // Pikselleri C++'ın kendi RAM'inde (Heap) güvenle tutuyoruz
-    std::vector<uint32_t> pixels; 
+
+    // Katmanın gerçek piksel belleği
+    std::vector<uint32_t> pixels;
+
     bool visible;
-    float opacity; // 0.0 (Tam Şeffaf) ile 1.0 (Tam Opak) arası
+    float opacity;
     std::string name;
 
 public:
-    // Kurucu: Katman ilk oluştuğunda tamamen ŞEFFAF (0x00000000) olur
-    Layer(int w, int h, std::string layerName) 
-        : width(w), height(h), name(layerName), visible(true), opacity(1.0f) {
-        pixels.resize(w * h, 0x00000000); 
+    Layer(int w, int h, std::string layerName)
+        : width(w),
+          height(h),
+          name(std::move(layerName)),
+          visible(true),
+          opacity(1.0f) {
+
+        pixels.resize(static_cast<size_t>(w) * static_cast<size_t>(h), 0x00000000);
     }
 
-    // Katmanı tamamen temizler (Şeffaf yapar)
     void clear() {
         std::fill(pixels.begin(), pixels.end(), 0x00000000);
     }
 
-    // Katmana özgü güvenli piksel boyama
     void setPixel(int x, int y, uint32_t colorArgb) {
         if (x >= 0 && x < width && y >= 0 && y < height) {
-            pixels[y * width + x] = colorArgb;
+            pixels[static_cast<size_t>(y) * static_cast<size_t>(width)
+                 + static_cast<size_t>(x)] = colorArgb;
         }
     }
 
-    // İlgili pikselin rengini okuma (Blend/Karıştırma işlemleri için lazım olacak)
     uint32_t getPixel(int x, int y) const {
         if (x >= 0 && x < width && y >= 0 && y < height) {
-            return pixels[y * width + x];
+            return pixels[static_cast<size_t>(y) * static_cast<size_t>(width)
+                        + static_cast<size_t>(x)];
         }
-        return 0; // Sınır dışıysa şeffaf döndür
+
+        return 0;
     }
 
-    // Getter ve Setter Metotları
-    bool isVisible() const { return visible; }
-    void setVisible(bool v) { visible = v; }
-    
-    float getOpacity() const { return opacity; }
-    void setOpacity(float o) { opacity = o; }
-    
-    std::string getName() const { return name; }
-    void setName(std::string n) { name = n; }
-    
-    int getWidth() const { return width; }
-    int getHeight() const { return height; }
+    bool isVisible() const {
+        return visible;
+    }
+
+    void setVisible(bool v) {
+        visible = v;
+    }
+
+    float getOpacity() const {
+        return opacity;
+    }
+
+    void setOpacity(float o) {
+        opacity = std::clamp(o, 0.0f, 1.0f);
+    }
+
+    const std::string& getName() const {
+        return name;
+    }
+
+    void setName(const std::string& n) {
+        name = n;
+    }
+
+    int getWidth() const {
+        return width;
+    }
+
+    int getHeight() const {
+        return height;
+    }
+
+    const std::vector<uint32_t>& getPixels() const {
+        return pixels;
+    }
+
+    std::vector<uint32_t>& getPixels() {
+        return pixels;
+    }
+
+    void replacePixels(std::vector<uint32_t>&& newPixels) {
+        const size_t expectedSize =
+            static_cast<size_t>(width) * static_cast<size_t>(height);
+
+        if (newPixels.size() != expectedSize) {
+            return;
+        }
+
+        pixels = std::move(newPixels);
+    }
 };
 
 #endif // LAYER_HPP

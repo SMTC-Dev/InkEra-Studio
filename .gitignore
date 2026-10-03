@@ -53,3 +53,17 @@ src/main/cpp/build/
 
 # Gizli Notlar
 *-secret.md
+
+# Obsidian
+.obsidian/
+
+# Kök dizindeki Markdown dosyalarını yok say, sadece README.md'yi hariç tut
+/*.md
+!/README.md
+
+# Obsidian
+.obsidian/
+
+# Kök dizindeki Markdown dosyalarını yok say (README.md hariç)
+/*.md
+!/README.md

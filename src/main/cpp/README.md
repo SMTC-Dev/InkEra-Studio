@@ -13,6 +13,7 @@ InkEra Studio'nun yüksek performanslı çizim motorudur. Java tarafıyla **Proj
    - `Pencil`: Antialiasing (yumuşatma) yapmadan doğrudan pikselleri boyayan keskin kalem aracıdır.
 
 ## Veri Akışı
+
 1. JavaFX farenin ekran koordinatlarını yakalar.
 2. `WorkspaceController` bu koordinatları matris üzerinden tuval koordinatına (0,0 ile Width,Height arası) çevirir.
 3. Panama aracılığıyla `draw_pixel(x, y, color)` komutu C++'a iletilir.
@@ -20,9 +21,11 @@ InkEra Studio'nun yüksek performanslı çizim motorudur. Java tarafıyla **Proj
 5. JavaFX `pixelBuffer.updateBuffer()` çağrısı ile GPU'yu uyarır ve resim güncellenir.
 
 ## Derleme (Build)
+
 Derleme işlemi CMake ile yapılır:
-\`\`\`bash
+
+```bash
 mkdir build && cd build
 cmake ..
 make
-\`\`\`
+```

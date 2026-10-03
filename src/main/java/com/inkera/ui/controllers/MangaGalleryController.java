@@ -4,15 +4,9 @@ import com.inkera.core.models.ProjectModel;
 import com.inkera.services.ProjectService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -23,9 +17,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.util.List;
-import java.util.Optional;
 
 public class MangaGalleryController {
 
@@ -63,6 +55,7 @@ public class MangaGalleryController {
         
         StackPane cover = new StackPane();
         cover.getStyleClass().add("manga-card-cover");
+        // YENİ: Çerçeveyi tam 230x324 ebatlarına kilitliyoruz.
         cover.setPrefSize(230, 324);
         cover.setMinSize(230, 324);
         cover.setMaxSize(230, 324);
@@ -72,9 +65,13 @@ public class MangaGalleryController {
             File posterFile = new File(project.getProjectPath() + "/.inkera/poster.png");
             if (posterFile.exists()) {
                 String imageUri = posterFile.toURI().toString() + "?time=" + System.currentTimeMillis();
+                
+                // YENİ: Piksellenmeyi (Blur) çözen yüksek kaliteli resim yükleme (smooth = true)
+                // Image(url, reqWidth, reqHeight, preserveRatio, smooth)
                 javafx.scene.image.Image hqImage = new javafx.scene.image.Image(imageUri, 230, 324, false, true);
                 javafx.scene.image.ImageView imageView = new javafx.scene.image.ImageView(hqImage);
                 
+                // Donanımsal antialiasing (yumuşatma) filtresini zorla
                 imageView.setSmooth(true);
                 imageView.setCache(true);
                 
@@ -102,6 +99,7 @@ public class MangaGalleryController {
         
         Label titleLabel = new Label(project.getTitle());
         titleLabel.getStyleClass().add("manga-title");
+        // YENİ: Başlık sığsın diye genişlik 150'den 220'ye çıkartıldı
         titleLabel.setMaxWidth(220); 
         titleLabel.setWrapText(false); 
         titleLabel.setTextOverrun(javafx.scene.control.OverrunStyle.ELLIPSIS);
@@ -114,87 +112,12 @@ public class MangaGalleryController {
         infoBox.getChildren().addAll(titleLabel, subLabel);
         card.getChildren().addAll(cover, infoBox);
         
-        ContextMenu contextMenu = new ContextMenu();
-        MenuItem deleteItem = new MenuItem("Projeyi Sil");
-        deleteItem.setStyle("-fx-text-fill: #ff5252; -fx-font-weight: bold;");
-        deleteItem.setOnAction(e -> deleteMangaProject(project));
-        contextMenu.getItems().add(deleteItem);
-
-        card.setOnContextMenuRequested(e -> {
-            contextMenu.show(card, e.getScreenX(), e.getScreenY());
-        });
-
         card.setOnMouseClicked(e -> {
             System.out.println("Projeye Tıklandı: " + project.getTitle() + " | Yol: " + project.getProjectPath());
             openMangaDetail(project);
         });
         
         return card;
-    }
-
-    private void deleteMangaProject(ProjectModel project) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Manga Projesini Sil");
-        alert.setHeaderText("'" + project.getTitle() + "' kalıcı olarak silinecek!");
-        alert.setContentText("Bu işlem geri alınamaz. Proje klasörü, bölümler ve sayfalar tamamen silinecektir. Onaylıyor musunuz?");
-
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.setStyle("-fx-background-color: #2b2b2b; -fx-text-fill: white;");
-        Node contentLabel = dialogPane.lookup(".content.label");
-        if (contentLabel != null) contentLabel.setStyle("-fx-text-fill: #e0e0e0;");
-        Node headerPanel = dialogPane.lookup(".header-panel");
-        if (headerPanel != null) headerPanel.setStyle("-fx-background-color: #1e1e1e;");
-        Node headerText = dialogPane.lookup(".header-panel .label");
-        if (headerText != null) headerText.setStyle("-fx-text-fill: #e0e0e0;");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            
-            // 1. Fiziksel Dizin Siliniyor
-            if (project.getProjectPath() != null) {
-                File projectFolder = new File(project.getProjectPath());
-                if (projectFolder.exists()) {
-                    deleteDirectoryRecursively(projectFolder);
-                }
-            }
-
-            // 2. GÜNCELLENDİ: PATH Eşleşmesi ile Kurşun Geçirmez JSON Avcısı
-            if (project.getProjectPath() != null) {
-                File userDataProjectsDir = new File(System.getProperty("user.dir"), "user-data/projects");
-                if (userDataProjectsDir.exists() && userDataProjectsDir.isDirectory()) {
-                    File[] jsonFiles = userDataProjectsDir.listFiles((dir, name) -> name.endsWith(".json"));
-                    if (jsonFiles != null) {
-                        String targetPath = project.getProjectPath().replace("\\", "/");
-                        
-                        for (File file : jsonFiles) {
-                            try {
-                                String content = new String(Files.readAllBytes(file.toPath()));
-                                // Eğer dosyanın içindeki path, sildiğimiz projenin path'ini içeriyorsa kesin odur!
-                                if (content.contains(targetPath)) {
-                                    file.delete();
-                                    break;
-                                }
-                            } catch (Exception ex) {
-                                ex.printStackTrace();
-                            }
-                        }
-                    }
-                }
-            }
-
-            // 3. Arayüzü Tazele
-            loadProjectsToUI();
-        }
-    }
-
-    private void deleteDirectoryRecursively(File directoryToBeDeleted) {
-        File[] allContents = directoryToBeDeleted.listFiles();
-        if (allContents != null) {
-            for (File file : allContents) {
-                deleteDirectoryRecursively(file);
-            }
-        }
-        directoryToBeDeleted.delete();
     }
 
     private void openMangaDetail(ProjectModel project) {

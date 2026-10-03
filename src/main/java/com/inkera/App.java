@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.inkera.core.config.ConfigService;
 import com.inkera.services.LocaleManager;
+import com.inkera.util.AppLogger;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -23,7 +24,20 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        useCustomTitleBar = ConfigService.getInstance().isCustomTitleBar();
+        ConfigService configService = ConfigService.getInstance();
+
+        AppLogger.configure(
+            configService.isLoggingEnabled(),
+            configService.getLogLevel()
+        );
+
+        AppLogger.info("InkEra Studio başlatılıyor.");
+        AppLogger.debug(
+            "Config dosyası: "
+            + configService.getConfigFile()
+        );
+
+        useCustomTitleBar = configService.isCustomTitleBar();
 
         splashStage = stage;
          

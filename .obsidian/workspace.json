@@ -11,13 +11,32 @@
             "id": "9091b38e1a22b03e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "src/main/cpp/README.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "Yeni sekme"
+              "title": "README"
+            }
+          },
+          {
+            "id": "58b0c6e7defb480a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ChatCPT'nin belirlediği öncelikler.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ChatCPT'nin belirlediği öncelikler"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -37,7 +56,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "Dosya Gezgini"
@@ -179,22 +200,19 @@
       "bases:Yeni taban oluştur": false
     }
   },
-  "active": "9091b38e1a22b03e",
+  "active": "58b0c6e7defb480a",
   "lastOpenFiles": [
-    "InkEra-Studio-Architecture.md",
-    "README.md",
-    "ATTENTION.md",
-    "CHANGELOG.md",
-    "user-data/projects/d4fb6c89-4ff7-47da-9db3-c6d30727a0ce.json",
-    "user-data/projects/11cae9ef-f782-46ff-b58e-f71a243425cd.json",
-    "user-data/projects/07b30d9e-728e-43b4-943f-b79043658bbe.json",
-    "user-data/projects/a6cc629d-1629-4c1f-8b6c-8c680a6960d6.json",
-    "user-data/projects/c211b041-d4cb-4745-8db8-81edee4210fb.json",
-    "user-data/projects/057b3079-3dc5-4e4e-80c3-a576d9a04f7b.json",
-    "user-data/images/InkEra Project.json",
-    "user-data/images/InkEra Örnek Çizim.json",
-    "user-data/images/Örnek Proje.json",
-    "user-data/images",
+    "target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst",
+    "target/classes/com/inkera/ui/controllers/TitleBarController.class",
+    "target/classes/com/inkera/ui/controllers/SplashController.class",
+    "target/classes/com/inkera/ui/controllers/SplashController$1.class",
+    "target/classes/com/inkera/ui/controllers/LoginController.class",
+    "target/classes/com/inkera/ui/controllers/SettingsController.class",
+    "target/classes/com/inkera/ui/workspace/WorkspaceController.class",
+    "target/classes/com/inkera/ui/workspace/WorkspaceController$2.class",
+    "target/classes/com/inkera/ui/workspace/WorkspaceController$1.class",
+    "target/classes/com/inkera/ui/workspace/WorkspaceController$LayerData.class",
+    "target/classes/com/inkera/ui/workspace",
     "target/classes/com/inkera/assets/AppLogo.png",
     "target/classes/com/inkera/assets/emptyIcon.png",
     "target/classes/com/inkera/assets/WorldIcon.png",
@@ -205,6 +223,14 @@
     "target/classes/com/inkera/assets/AppLogo_.png",
     "target/classes/com/inkera/assets/eye-closed.png",
     "target/classes/com/inkera/assets/icons/tools/Icon_Lasso.png",
+    "Başlıksız.md",
+    "ChatCPT'nin belirlediği öncelikler.md",
+    "CHANGELOG.md",
+    "README.md",
+    "InkEra-Web-Architecture-secret.md",
+    "InkEra-Studio-Architecture.md",
+    "src/main/cpp/README.md",
+    "ATTENTION.md",
     "README.md.md",
     "silinecek örnek markdown.md"
   ]
