@@ -1,4 +1,12 @@
 <div align="center">
+  <img src="https://github.com/user-attachments/assets/647992c4-176e-4161-b413-62dcc7ec6968" width="250">
+</div>
+
+<h1 align="center">
+  InkEra Studio
+</h1>
+
+<div align="center">
   <p><strong>An open-source, professional-grade manga and comic creation studio tailored for Linux.</strong></p>
 
   <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3"></a>
