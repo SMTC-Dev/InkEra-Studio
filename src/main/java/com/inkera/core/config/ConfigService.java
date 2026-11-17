@@ -319,7 +319,7 @@ public class ConfigService {
     }
 
     // ---------------------------------------------------------
-    // USER DATA
+    // USER DATA & SUBDIRECTORIES
     // ---------------------------------------------------------
 
     public Path getUserDataDir() {
@@ -327,7 +327,7 @@ public class ConfigService {
         Path path =
                 Paths.get(
                         config.paths.userData
-                ).toAbsolutePath();
+                ).toAbsolutePath().normalize();
 
         try {
             Files.createDirectories(path);
@@ -336,6 +336,26 @@ public class ConfigService {
         }
 
         return path;
+    }
+
+    public Path getProjectsDataDir() {
+        Path projectsDir = getUserDataDir().resolve("projects");
+        try {
+            Files.createDirectories(projectsDir);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return projectsDir;
+    }
+
+    public Path getImagesDataDir() {
+        Path imagesDir = getUserDataDir().resolve("images");
+        try {
+            Files.createDirectories(imagesDir);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imagesDir;
     }
 
     public void setUserDataDir(

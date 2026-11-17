@@ -23,7 +23,7 @@ public class LoginController {
         
         if (success) {
             statusLabel.setText("Giriş Başarılı!");
-            statusLabel.setStyle("-fx-text-fill: #4caf50;");
+            statusLabel.setStyle("-fx-text-fill: #fdb547;");
             // Burada pencereyi kapatıp ana ekrandaki kullanıcı bilgisini güncelleyebiliriz
              closeWindow();
         } else {
@@ -39,7 +39,7 @@ public class LoginController {
         
         if (success) {
             statusLabel.setText("Kayıt Başarılı! Şimdi giriş yapabilirsin.");
-            statusLabel.setStyle("-fx-text-fill: #4caf50;");
+            statusLabel.setStyle("-fx-text-fill: #fdb547;");
         } else {
             statusLabel.setText("Kayıt Başarısız! (Şifre en az 6 hane olmalı)");
             statusLabel.setStyle("-fx-text-fill: #e57373;");

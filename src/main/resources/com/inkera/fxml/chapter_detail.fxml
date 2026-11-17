@@ -16,19 +16,18 @@
 
     <HBox VBox.vgrow="ALWAYS">
         <!-- SOL PANEL: İlk Sayfa (Bölüm Kapağı) -->
-        <!-- YENİ: Genişlik 350 yapıldı, sağa gölge eklendi ve üstte kalması için view-order ayarlandı -->
-        <VBox spacing="20" alignment="TOP_CENTER" prefWidth="350" minWidth="350" maxWidth="350" 
+        <VBox spacing="20" alignment="TOP_CENTER" prefWidth="350" minWidth="350" maxWidth="350"
               style="-fx-padding: 30; -fx-background-color: #2b2b2b; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 20, 0, 5, 0); -fx-view-order: -1;">
-            
-            <!-- YENİ: Kapak Oranı 1:1.41 (200x282) olarak ayarlandı -->
-            <StackPane alignment="CENTER" prefWidth="200" prefHeight="282" minWidth="200" minHeight="282" maxWidth="200" maxHeight="282" 
-                       style="-fx-background-color: #1e1e1e; -fx-border-color: #4caf50; -fx-border-width: 2; -fx-border-style: dashed; -fx-background-radius: 5; -fx-border-radius: 5;">
+
+            <!-- Kapak Oranı 1:1.41 (200x282) -->
+            <StackPane fx:id="coverPreviewPane" alignment="CENTER" prefWidth="200" prefHeight="282" minWidth="200" minHeight="282" maxWidth="200" maxHeight="282"
+                       style="-fx-background-color: #1e1e1e; -fx-border-color: #fdb547; -fx-border-width: 2; -fx-border-style: dashed; -fx-background-radius: 5; -fx-border-radius: 5;">
                 <Label text="Sayfa 1 (Kapak)" style="-fx-text-fill: #555; -fx-font-weight: bold;"/>
             </StackPane>
-            
+
             <VBox spacing="5" alignment="CENTER">
                 <Label fx:id="chapterTitleLabel" textAlignment="CENTER" wrapText="true" style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
-                <Label fx:id="layoutInfoLabel" style="-fx-text-fill: #4caf50;"/>
+                <Label fx:id="layoutInfoLabel" style="-fx-text-fill: #fdb547;"/>
             </VBox>
         </VBox>
 
@@ -37,7 +36,8 @@
             <HBox alignment="CENTER_LEFT" style="-fx-padding: 30 40 20 40;">
                 <Label text="Sayfalar" style="-fx-text-fill: white; -fx-font-size: 22px; -fx-font-weight: bold;"/>
                 <Region HBox.hgrow="ALWAYS"/>
-                <Button text="+ Yeni Sayfa" style="-fx-background-color: #4caf50; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+                <Button fx:id="addPageHeaderBtn" text="+ Yeni Sayfa" onAction="#handleAddNewPageFromHeader"
+                        style="-fx-background-color: #fdb547; -fx-text-fill: #181819; -fx-cursor: hand; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 5;"/>
             </HBox>
 
             <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER">

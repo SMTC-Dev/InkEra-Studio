@@ -2,9 +2,29 @@
 
 ---
 
-**Oluşturulma Tarihi:** 2026-02-12  
-**Son Değiştirilme Tarihi:** 2026-05-03
+**Oluşturulma Tarihi:** 2026-02-12
+**Son Değiştirilme Tarihi:** 2026-11-17
 **Düzenleyen:** Samet Cırık & Google Gemini
+
+---
+
+## 2026-11-17
+
+- **Eklenenler**
+    - **Pürüzsüz Fırça Motoru (Anti-Aliasing):** C++ tarafındaki fırça ucuna (`Pencil.hpp`), yarıçap hesaplamalarına dayalı gerçek *SrcOver* Alpha Blending ve kenar yumuşatma (anti-aliasing) eklendi.
+    - **Yumuşak Silgi (Destination Out):** Silgi modu için opaklık değerini kademeli olarak düşüren ve lekeleri (artifacts) engelleyen yeni bir alfa eksiltme algoritması yazıldı.
+    - **Krita Tarzı Araç Geçişi:** `E` tuşuna basıldığında aktif araç ile silgi arasında geçiş yapan (Toggle) pratik kısayol yapısı entegre edildi.
+    - **Space ile Canvas Pan (Grab):** `Space` tuşuna basılı tutarken tuvalde gezinmeyi (mouse drag) sağlayan endüstri standardı navigasyon eklendi.
+    - **Hıza Bağlı Fırça Kalınlığı (G-Pen):** Fırçanın hızı arttıkça (iki nokta arasındaki süreye bağlı olarak) çizginin inceldiği, yavaşladıkça kalınlaştığı G-Pen dinamikleri `WorkspaceController`'a eklendi.
+    - **Akümülatör Destekli Spacing:** Bresenham algoritması kaldırılarak yerine fırça adımlarını (spacing) bir hafızada (accumulator) tutan ve piksellerin üst üste binip siyah lekeler oluşturmasını kesin olarak engelleyen yeni `Tool.hpp` çizgi algoritması yazıldı.
+    - **Kavis Yumuşatma (Bezier Interpolation):** Tabletten (veya fareden) gelen ayrık ve doğrusal noktaları, Quadratic Bezier kavislerine dönüştürerek köşeli (çokgen) çizim hatalarını yok eden *Spline Smoothing* sistemi Java tarafında kodlandı.
+
+- **Düzeltilenler / Optimizasyonlar**
+    - **Undo/Redo Bellek Sızıntısı:** Silme, taşıma veya adlandırma işlemlerinde başarısız çağrıların Undo geçmişini kirletmesi (boş snapshot alması) ve Redo sınırını (MAX_UNDO_STEPS) aşması düzeltildi.
+    - **Katman Hiyerarşisi:** C++ alt katmanı ile JavaFX UI katmanı arasındaki indeks tersliği düzeltildi. Artık listede en üstte olan katman, tuvalde de gerçekten en üstte render ediliyor.
+    - **Çift FXML Çakışması:** Sistemde büyük/küçük harf duyarlılığından kaynaklanan çift `Gallery.fxml` / `gallery.fxml` hatası temizlendi.
+    - **Kopyala/Yapıştır Hataları:** Fırça kısayollarında yanlışlıkla tetiklenen "PNG Dışa Aktar" (Export) blokları temizlendi.
+    - **JavaFX Dosya Import Hatası:** `WorkspaceController` içinde eksik olan `java.io.File` importu eklendi.
 
 ---
 
@@ -75,42 +95,42 @@
 
 ---
 
-## 2026-04-28 
+## 2026-04-28
 
 - **Manga Detay Paneli & Dinamik Veri Yönetimi:**
-    - **Gelişmiş Etiket Sistemi (Token Input):** Tıklanabilir, boşluk (Space) tuşuyla yeni kutucuk açan, Enter ile kaydedilen ve odak kaybında otomatik senkronizasyon sağlayan modern etiket düzenleyici implemente edildi. 
-    - **Görsel Stil Güncellemesi:** Etiket metinleri ve vurgular için stüdyo temasına uygun yeşil (#4caf50) renk şemasına geçildi. 
-    - **Kapak Resmi Motoru:** `.inkera/poster.png` üzerinden kapak yükleme, değiştirme ve JavaFX image cache sorunlarını aşan (timestamping) dinamik önizleme sistemi kuruldu. 
-    - **Native Pencere Mimarisi:** Diyalog pencereleri (Yeni Proje, Sinopsis) işletim sistemi (KDE/KWin) pencere yöneticisine devredilerek görsel artefaktlar ve beyaz köşe hataları (glitch) giderildi. 
-    - **Custom Scrollbar:** Sinopsis alanı için stüdyo karanlık temasıyla uyumlu, hover efektli yeşil kaydırma çubukları tasarlandı. 
+    - **Gelişmiş Etiket Sistemi (Token Input):** Tıklanabilir, boşluk (Space) tuşuyla yeni kutucuk açan, Enter ile kaydedilen ve odak kaybında otomatik senkronizasyon sağlayan modern etiket düzenleyici implemente edildi.
+    - **Görsel Stil Güncellemesi:** Etiket metinleri ve vurgular için stüdyo temasına uygun yeşil (#4caf50) renk şemasına geçildi.
+    - **Kapak Resmi Motoru:** `.inkera/poster.png` üzerinden kapak yükleme, değiştirme ve JavaFX image cache sorunlarını aşan (timestamping) dinamik önizleme sistemi kuruldu.
+    - **Native Pencere Mimarisi:** Diyalog pencereleri (Yeni Proje, Sinopsis) işletim sistemi (KDE/KWin) pencere yöneticisine devredilerek görsel artefaktlar ve beyaz köşe hataları (glitch) giderildi.
+    - **Custom Scrollbar:** Sinopsis alanı için stüdyo karanlık temasıyla uyumlu, hover efektli yeşil kaydırma çubukları tasarlandı.
 
 - **Bug Fixes & Refactoring:**
-    - **Persistence Layer:** Verilerin hem merkezi `user-data` registry klasörüne hem de yerel proje dizinindeki `.inkera/meta.json` dosyasına yazılmasını sağlayan çift yönlü kayıt mekanizması kuruldu. 
-    - **Layout Stabilization:** Manga galerisinde uzun proje isimlerinin grid yapısını bozması, metin sınırlama (ellipsis) ve hizalama güncellemeleriyle çözüldü. 
+    - **Persistence Layer:** Verilerin hem merkezi `user-data` registry klasörüne hem de yerel proje dizinindeki `.inkera/meta.json` dosyasına yazılmasını sağlayan çift yönlü kayıt mekanizması kuruldu.
+    - **Layout Stabilization:** Manga galerisinde uzun proje isimlerinin grid yapısını bozması, metin sınırlama (ellipsis) ve hizalama güncellemeleriyle çözüldü.
 
---- 
-## 2026-04-27 
+---
+## 2026-04-27
 
-- **Mimari Devrim & Proje Yapılandırması:** 
-    - **Modern Studio Architecture:** Proje tamamen modüler JavaFX 21 yapısına taşındı. 
-    - **Proje İnşası (Scaffolding):** Yeni seri başlatıldığında kullanıcının seçtiği dizinde otomatik olarak `.inkera/` (gizli meta) ve `Episodes/` klasör hiyerarşisinin kurulması sağlandı. 
-    - **Dinamik Galeri:** JSON dosyalarını tarayarak otomatik kart üreten ve detay ekranına veri paslayan galeri motoru geliştirildi. 
+- **Mimari Devrim & Proje Yapılandırması:**
+    - **Modern Studio Architecture:** Proje tamamen modüler JavaFX 21 yapısına taşındı.
+    - **Proje İnşası (Scaffolding):** Yeni seri başlatıldığında kullanıcının seçtiği dizinde otomatik olarak `.inkera/` (gizli meta) ve `Episodes/` klasör hiyerarşisinin kurulması sağlandı.
+    - **Dinamik Galeri:** JSON dosyalarını tarayarak otomatik kart üreten ve detay ekranına veri paslayan galeri motoru geliştirildi.
 
-- **GitHub & Versiyon Kontrolü:** 
-    - **Repository Migration:** Proje GitHub'a (`master` branch) taşındı. 
-    - **Lisanslama:** Projenin tüm haklarını koruyan ancak kodun incelenmesine izin veren GPLv3 lisans yapısı kuruldu. 
-    - **Obsidian Entegrasyonu:** Proje kök dizini Obsidian Vault olarak yapılandırıldı; `.obsidian` klasörü `.gitignore` kapsamına alındı. 
+- **GitHub & Versiyon Kontrolü:**
+    - **Repository Migration:** Proje GitHub'a (`master` branch) taşındı.
+    - **Lisanslama:** Projenin tüm haklarını koruyan ancak kodun incelenmesine izin veren GPLv3 lisans yapısı kuruldu.
+    - **Obsidian Entegrasyonu:** Proje kök dizini Obsidian Vault olarak yapılandırıldı; `.obsidian` klasörü `.gitignore` kapsamına alındı.
 
 ---
 
 ### 2026-02-18
 
-* **Core Development (Çizim Modülü):**
+- **Core Development (Çizim Modülü):**
     * Workspace (Çizim Penceresi) arayüzü temel yapısı kuruldu.
     * Ekranın sağ ve sol kısımlarına dikey şerit (strip) şeklinde buton panelleri eklendi.
     * `WorkspaceController` tarafında panellerin dinamik olarak açılıp kapanmasını sağlayan (Toggle) mekanizma geliştirildi.
 
-* **UI/UX & Assets:**
+- **UI/UX & Assets:**
     * Araç çubuklarına (fırça, silgi, katman işlemleri vb.) PNG formatında ikon entegrasyonu denendi.
     * İkonların görüntülenmesindeki teknik aksaklıklar ve görsel uyumsuzluklar nedeniyle **süreç askıya alındı**.
     * **Gelecek Planı:** Tüm ikon kütüphanesinin SVG formatına dönüştürülmesi ve sistematiği basitleştirmek adına "A-B-C-D" şeklinde yeniden isimlendirilmesi kararlaştırıldı.
@@ -119,11 +139,11 @@
 
 ### 2026-02-13
 
-* **Proje Yapısı ve Refactoring:**
+- **Proje Yapısı ve Refactoring:**
     * Kodun okunabilirliğini ve bakımını kolaylaştırmak amacıyla, FXML ve denetleyici (controller) sınıfları kendi paketleri altına taşındı (`com.inkera.view`, `com.inkera.controllers`, `com.inkera.titlebar` vb.).
     * Bu yeniden yapılandırma sonrası ortaya çıkan paket yolu hataları giderildi.
 
-* **Bug Fixes (Hata Düzeltmeleri):**
+- **Bug Fixes (Hata Düzeltmeleri):**
     * **Uygulama Başlatma Hatası (Critical):** `ClassNotFoundException` hatası, FXML dosyalarındaki `fx:controller` yollarının yeni paket yapılarına göre güncellenmesiyle çözüldü.
     * **FXML Dahil Etme Hatası (Critical):** FXML dosyaları arasındaki iç içe yüklemelerde (`fx:include`) oluşan `FileNotFoundException`, dosya yollarının düzeltilmesiyle giderildi.
     * **Stil Dosyası Bulunamama Sorunu:** Arayüz (`.fxml`) dosyalarının `style.css` dosyasını bulamaması sorunu, göreceli yol (relative path) güncellemeleriyle çözüldü.
@@ -132,15 +152,15 @@
 
 ### 2026-02-12
 
-* **Migration (Teknoloji Göçü):**
+- **Migration (Teknoloji Göçü):**
     * Proje altyapısı **Java Swing**'den **JavaFX 21**'e taşındı.
     * **Arch Linux / VS Code OSS** ortamı için Maven yapılandırması (`pom.xml`) ve modüler sistem ayarları (`module-info.java`) yapıldı.
 
-* **Backend & Cloud (Bulut Entegrasyonu):**
+- **Backend & Cloud (Bulut Entegrasyonu):**
     * **Firebase Auth (Deneysel):** Google Firebase projesi oluşturuldu ve REST API üzerinden Email/Şifre giriş sistemi kodlandı.
     * *Not: Temel bağlantı sağlandı ancak tam kararlılık testleri henüz tamamlanmadı (Work in Progress).*
 
-* **UI/UX Design (Arayüz Tasarımı):**
+- **UI/UX Design (Arayüz Tasarımı):**
     * Uygulama genelinde **Modern Dark Theme** (Koyu Tema) yapısına geçildi.
     * **Layout Stabilization:** Menü butonlarındaki hover efekti kaynaklı titreme (layout shift) sorunu giderildi.
     * Standart pencere kenarlıkları kaldırılarak (`StageStyle.UNDECORATED`), özel tasarım bir **TitleBar** entegre edildi.

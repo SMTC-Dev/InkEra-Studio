@@ -20,12 +20,12 @@
     <VBox spacing="15">
         <VBox spacing="8">
             <Label text="Bölüm Adı (Klasör İsmi Olacak):" style="-fx-text-fill: #888;"/>
-            <TextField fx:id="chapterTitleField" promptText="Örn: Bölüm 1 - Uyanış" styleClass="text-field" style="-fx-background-color: #1e1e1e; -fx-text-fill: white; -fx-border-color: #4caf50; -fx-border-radius: 4; -fx-padding: 8;"/>
+            <TextField fx:id="chapterTitleField" promptText="Örn: Bölüm 1 - Uyanış" styleClass="text-field" style="-fx-background-color: #1e1e1e; -fx-text-fill: white; -fx-border-color: #fdb547; -fx-border-radius: 4; -fx-padding: 8;"/>
         </VBox>
 
         <VBox spacing="8">
             <Label text="Sayfa Düzeni (Okuma Yönü):" style="-fx-text-fill: #888;"/>
-            <ComboBox fx:id="layoutComboBox" style="-fx-background-color: #1e1e1e; -fx-border-color: #4caf50; -fx-border-radius: 4; -fx-text-fill: white;" prefWidth="400">
+            <ComboBox fx:id="layoutComboBox" style="-fx-background-color: #1e1e1e; -fx-border-color: #fdb547; -fx-border-radius: 4; -fx-text-fill: white;" prefWidth="400">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="Manga (Sağdan Sola)"/>

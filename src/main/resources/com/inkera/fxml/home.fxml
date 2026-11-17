@@ -4,15 +4,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 
 <BorderPane fx:id="mainPane"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.inkera.ui.controllers.HomeController"
             stylesheets="@../styles/style.css"
-            prefHeight="600.0" prefWidth="900.0"
+            prefHeight="800.0" prefWidth="1150.0"
             style="-fx-background-color: #252526;">
 
     <top>
@@ -21,11 +25,19 @@
 
     <left>
         <VBox prefWidth="250" styleClass="sidebar">
-            <VBox alignment="CENTER" prefHeight="150" spacing="5">
-                <Label text="InkEra" styleClass="brand-label"/>
-                <Label text="Studio" style="-fx-text-fill: #888; -fx-font-size: 12px;"/>
+            <VBox alignment="CENTER" prefHeight="155" spacing="6">
+                <HBox alignment="CENTER" spacing="10">
+                    <!-- BOZUK SVG YERİNE KRİTA'DA HAZIRLADIĞIN GERÇEK PNG LOGO EKLENDİ -->
+                    <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" smooth="true">
+                        <image>
+                            <Image url="@../assets/AppLogo.png" requestedWidth="64" requestedHeight="64" preserveRatio="true" smooth="true" />
+                        </image>
+                    </ImageView>
+                    <Label text="InkEra" styleClass="brand-label"/>
+                </HBox>
+                <Label text="MANGA &amp; ILLUSTRATION STUDIO" style="-fx-text-fill: #888; -fx-font-size: 10px; -fx-font-weight: bold;"/>
             </VBox>
-            
+
             <Separator style="-fx-opacity: 0.1;"/>
 
             <VBox fx:id="menuButtons" spacing="5" style="-fx-padding: 20 0;">
@@ -40,13 +52,17 @@
             <Region VBox.vgrow="ALWAYS"/>
 
             <VBox spacing="10" style="-fx-padding: 20;">
-                <Label text="%login.ask" style="-fx-text-fill: #666; -fx-font-size: 11px;"/>
-                <Button text="%login.button" 
+                <Label fx:id="authStatusLabel" text="%login.ask" style="-fx-text-fill: #666; -fx-font-size: 11px;"/>
+                <Button fx:id="loginSidebarBtn" text="%login.button"
                         onAction="#showLoginDialog"
-                        style="-fx-background-color: transparent; -fx-text-fill: #4caf50; -fx-border-color: #4caf50; -fx-border-radius: 3; -fx-cursor: hand;" 
+                        style="-fx-background-color: transparent; -fx-text-fill: #fdb547; -fx-border-color: #fdb547; -fx-border-radius: 4; -fx-cursor: hand;"
                         maxWidth="Infinity"/>
             </VBox>
         </VBox>
     </left>
-    
+
+    <center>
+        <StackPane fx:id="contentStack" style="-fx-background-color: #252526;" />
+    </center>
+
 </BorderPane>

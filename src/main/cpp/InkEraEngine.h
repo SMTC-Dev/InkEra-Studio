@@ -7,15 +7,6 @@
 extern "C" {
 #endif
 
-/*
- * Java tarafında bu değer bir MemorySegment olarak tutulacak.
- *
- * Daha önce bütün native durum globaldi:
- *
- *     static LayerManager* layerManager;
- *
- * Artık her Workspace kendi EngineHandle'ına sahip olacak.
- */
 typedef void* InkEraEngineHandle;
 
 /* ============================================================
@@ -27,7 +18,29 @@ InkEraEngineHandle createEngine(int width, int height);
 void destroyEngine(InkEraEngineHandle engine);
 
 /* ============================================================
- * CANVAS / DRAWING
+ * UNDO / REDO HISTORY
+ * ============================================================ */
+
+void beginStrokeSnapshot(
+    InkEraEngineHandle engine
+);
+
+bool undoAction(
+    InkEraEngineHandle engine,
+    uint32_t* pixelBuffer,
+    int width,
+    int height
+);
+
+bool redoAction(
+    InkEraEngineHandle engine,
+    uint32_t* pixelBuffer,
+    int width,
+    int height
+);
+
+/* ============================================================
+ * CANVAS / DRAWING / TOOLS
  * ============================================================ */
 
 void clearCanvas(
@@ -50,6 +63,15 @@ bool setActiveLayer(
     int index
 );
 
+void setBrushSize(
+    InkEraEngineHandle engine,
+    int size
+);
+
+int getBrushSize(
+    InkEraEngineHandle engine
+);
+
 void usePencil(
     InkEraEngineHandle engine,
     uint32_t* pixelBuffer,
@@ -57,9 +79,34 @@ void usePencil(
     int height,
     int x0,
     int y0,
+    float pressureStart,
     int x1,
     int y1,
+    float pressureEnd,
     uint32_t colorArgb
+);
+
+void useEraser(
+    InkEraEngineHandle engine,
+    uint32_t* pixelBuffer,
+    int width,
+    int height,
+    int x0,
+    int y0,
+    float pressureStart,
+    int x1,
+    int y1,
+    float pressureEnd
+);
+
+bool useBucketFill(
+    InkEraEngineHandle engine,
+    uint32_t* pixelBuffer,
+    int width,
+    int height,
+    int startX,
+    int startY,
+    uint32_t fillColorArgb
 );
 
 /* ============================================================
@@ -73,6 +120,21 @@ bool setLayerVisibility(
     int height,
     int index,
     bool isVisible
+);
+
+bool setLayerOpacity(
+    InkEraEngineHandle engine,
+    uint32_t* pixelBuffer,
+    int width,
+    int height,
+    int index,
+    float opacity
+);
+
+bool setLayerName(
+    InkEraEngineHandle engine,
+    int index,
+    const char* newName
 );
 
 bool deleteLayer(
@@ -96,17 +158,11 @@ bool moveLayer(
  * PAGE SAVE / LOAD
  * ============================================================ */
 
-/*
- * Engine'in o anki LayerManager durumunu .inkpage dosyasına kaydeder.
- */
 bool savePage(
     InkEraEngineHandle engine,
     const char* filePath
 );
 
-/*
- * .inkpage dosyasını Engine'e yükler ve pixelBuffer'a render eder.
- */
 bool loadPage(
     InkEraEngineHandle engine,
     uint32_t* pixelBuffer,
@@ -115,17 +171,6 @@ bool loadPage(
     const char* filePath
 );
 
-/*
- * Dosyanın canvas boyutlarını okur.
- *
- * Dönüş:
- *     (width << 32) | height
- *
- * Java tarafında daha sonra dosya açılmadan önce boyutu
- * öğrenmek için kullanılacak.
- *
- * Bu fonksiyon Engine state'ine ihtiyaç duymaz.
- */
 int64_t getPageSize(
     const char* filePath
 );

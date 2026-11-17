@@ -39,7 +39,7 @@
             <VBox spacing="5" alignment="CENTER_LEFT">
                 <Label text="Cyberpunk_City_Concept_v4" style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
                 <Label text="%dashboard.editedTime" style="-fx-text-fill: #888;"/>
-                <Label text="%dashboard.continue" style="-fx-text-fill: #4caf50; -fx-padding: 10 0 0 0; -fx-cursor: hand;"/>
+                <Label text="%dashboard.continue" style="-fx-text-fill: #fdb547; -fx-padding: 10 0 0 0; -fx-cursor: hand;"/>
             </VBox>
         </HBox>
     </VBox>

@@ -51,19 +51,23 @@ user-data/images/*.json
 # C++ Build Files
 src/main/cpp/build/
 
-# Gizli Notlar
+# Gizli Notlar & Dökümler
 *-secret.md
+inkera_dump.txt
+
+# Test Resimleri (Fırça testleri vs.)
+InkEra-*Test*.png
+InkEra-*Test*.jpg
+InkEra-Fırça*.png
+InkEra-Fırça*.jpg
+
+# Kök dizindeki Markdown dosyalarını yok say, sadece README.md ve CHANGELOG.md'yi hariç tut
+/*.md
+!/README.md
+!/CHANGELOG.md
 
 # Obsidian
 .obsidian/
 
-# Kök dizindeki Markdown dosyalarını yok say, sadece README.md'yi hariç tut
-/*.md
-!/README.md
-
-# Obsidian
-.obsidian/
-
-# Kök dizindeki Markdown dosyalarını yok say (README.md hariç)
-/*.md
-!/README.md
+# Farklı bir proje notumdan araya kaynamış ATTENTION.md dosyası:
+ATTENTION.md

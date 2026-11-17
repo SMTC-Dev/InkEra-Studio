@@ -49,8 +49,8 @@
     -fx-font-family: "Segoe UI", sans-serif;
     -fx-font-size: 28px;
     -fx-font-weight: bold;
-    -fx-text-fill: #4caf50;
-    -fx-effect: dropshadow(three-pass-box, rgba(76, 175, 80, 0.4), 10, 0, 0, 0);
+    -fx-text-fill: #fdb547;
+    -fx-effect: dropshadow(three-pass-box, rgba(253, 181, 71, 0.4), 10, 0, 0, 0);
 }
 
 .menu-button {
@@ -66,19 +66,19 @@
 
 .menu-button:hover {
     -fx-background-color: #2d2d2d;
-    -fx-text-fill: #4caf50;
-    -fx-border-color: #4caf50; 
+    -fx-text-fill: #fdb547;
+    -fx-border-color: #fdb547; 
 }
 
 .menu-button-active {
     -fx-background-color: #2d2d2d;
-    -fx-text-fill: #4caf50;
-    -fx-border-color: #4caf50;
+    -fx-text-fill: #fdb547;
+    -fx-border-color: #fdb547;
     -fx-font-weight: bold;
 }
 
 .hero-button {
-    -fx-background-color: #4caf50;
+    -fx-background-color: #fdb547;
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
@@ -87,12 +87,12 @@
 }
 
 .hero-button:hover {
-    -fx-background-color: #43a047;
-    -fx-effect: dropshadow(three-pass-box, rgba(76, 175, 80, 0.6), 15, 0, 0, 0);
+    -fx-background-color: #e09628;
+    -fx-effect: dropshadow(three-pass-box, rgba(253, 181, 71, 0.6), 15, 0, 0, 0);
 }
 
 .text-field:focused {
-    -fx-border-color: #4caf50;
+    -fx-border-color: #fdb547;
     -fx-border-width: 1;
     -fx-background-color: #45474a;
 }
@@ -107,7 +107,7 @@
 
 .project-card:hover {
     -fx-background-color: #3c3f41;
-    -fx-effect: dropshadow(three-pass-box, rgba(76, 175, 80, 0.4), 10, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(253, 181, 71, 0.4), 10, 0, 0, 0);
     -fx-translate-y: -2;
 }
 
@@ -128,7 +128,7 @@
 
 .last-project-banner:hover {
     -fx-background-color: #333;
-    -fx-border-color: #4caf50;
+    -fx-border-color: #fdb547;
 }
 
 .gallery-item {
@@ -141,7 +141,7 @@
 }
 
 .gallery-item:hover Label {
-    -fx-text-fill: #4caf50;
+    -fx-text-fill: #fdb547;
 }
 
 .chapter-item {
@@ -155,7 +155,7 @@
 
 .chapter-item:hover {
     -fx-background-color: #3c3f41;
-    -fx-border-color: #4caf50;
+    -fx-border-color: #fdb547;
 }
 
 .meta-tag {
@@ -211,21 +211,21 @@
 }
 
 .tab-pane .tab:selected {
-    -fx-border-color: #4caf50;
+    -fx-border-color: #fdb547;
 }
 
 .tab-pane .tab:selected .tab-label {
-    -fx-text-fill: #4caf50;
+    -fx-text-fill: #fdb547;
     -fx-font-weight: bold;
 }
 
 .tab-pane .tab:focused {
     -fx-focus-color: transparent;
-    -fx-border-color: transparent #4caf50 transparent transparent;
+    -fx-border-color: transparent #fdb547 transparent transparent;
 }
 
 .tab-pane .tab:selected:focused {
-    -fx-border-color: #4caf50;
+    -fx-border-color: #fdb547;
 }
 
 .tab-pane .tab-content-area {
@@ -368,13 +368,13 @@
 }
 
 .manga-card:hover .manga-card-cover {
-    -fx-border-color: #4caf50;
-    -fx-effect: dropshadow(three-pass-box, rgba(76, 175, 80, 0.4), 15, 0, 0, 0);
+    -fx-border-color: #fdb547;
+    -fx-effect: dropshadow(three-pass-box, rgba(253, 181, 71, 0.4), 15, 0, 0, 0);
     -fx-translate-y: 0; /* Hover efektini hafif artırdım ki o kocaman kart havaya kalksın */
 }
 
 .manga-card:hover .manga-title {
-    -fx-text-fill: #4caf50;
+    -fx-text-fill: #fdb547;
 }
 
 .new-project-cover {
@@ -386,8 +386,8 @@
 }
 
 .manga-card:hover .new-project-cover {
-    -fx-border-color: #4caf50;
-    -fx-background-color: rgba(76, 175, 80, 0.05);
+    -fx-border-color: #fdb547;
+    -fx-background-color: rgba(253, 181, 71, 0.05);
     -fx-border-style: solid;
 }
 
@@ -407,7 +407,7 @@
 
 .scroll-bar:vertical .thumb:hover,
 .scroll-bar:horizontal .thumb:hover {
-    -fx-background-color: #4caf50;
+    -fx-background-color: #fdb547;
 }
 
 .scroll-bar .increment-button,
@@ -423,7 +423,7 @@
 /* --- TAG SISTEMI --- */
 .meta-tag {
     -fx-background-color: #1e1e1e;
-    -fx-text-fill: #4caf50;
+    -fx-text-fill: #fdb547;
     -fx-padding: 4 10;
     -fx-border-color: #333;
     -fx-border-radius: 4;
@@ -434,8 +434,8 @@
 
 .mini-tag-input {
     -fx-background-color: #1e1e1e;
-    -fx-text-fill: #4caf50;
-    -fx-border-color: #4caf50;
+    -fx-text-fill: #fdb547;
+    -fx-border-color: #fdb547;
     -fx-border-radius: 4;
     -fx-background-radius: 4;
     -fx-padding: 3 8;
@@ -448,7 +448,7 @@
 /* --- COMBOBOX KARANLIK TEMA --- */
 .combo-box {
     -fx-background-color: #1e1e1e;
-    -fx-border-color: #4caf50;
+    -fx-border-color: #fdb547;
     -fx-border-radius: 4;
 }
 .combo-box .list-cell {
@@ -456,7 +456,7 @@
 }
 .combo-box-popup .list-view {
     -fx-background-color: #1e1e1e;
-    -fx-border-color: #4caf50;
+    -fx-border-color: #fdb547;
 }
 .combo-box-popup .list-cell {
     -fx-background-color: #1e1e1e;
@@ -464,7 +464,7 @@
 }
 .combo-box-popup .list-cell:hover, .combo-box-popup .list-cell:filled:selected {
     -fx-background-color: #3c3f41;
-    -fx-text-fill: #4caf50;
+    -fx-text-fill: #fdb547;
 }
 
 /* --- SAĞ TIK MENÜSÜ (CONTEXT MENU) --- */

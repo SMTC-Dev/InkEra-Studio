@@ -102,8 +102,8 @@ public class SettingsController implements Initializable {
                 deviceComboBox.getSelectionModel().selectFirst();
                 
                 deviceStatusLabel.setText("Bağlandı");
-                deviceStatusLabel.setStyle("-fx-text-fill: #4caf50; -fx-font-weight: bold;"); 
-                deviceStatusDot.setFill(Color.web("#4caf50"));
+                deviceStatusLabel.setStyle("-fx-text-fill: #fdb547; -fx-font-weight: bold;"); 
+                deviceStatusDot.setFill(Color.web("#fdb547"));
                 
                 // İşlem bittikten sonra da ekranın kaymasını %100 önlemek için çifte güvenlik:
                 Platform.runLater(() -> {
@@ -149,7 +149,7 @@ public class SettingsController implements Initializable {
         curve.setEndY(0);
         curve.setControlX(width / 2);
         curve.setControlY(height / 2);
-        curve.setStroke(Color.web("#4caf50"));
+        curve.setStroke(Color.web("#fdb547"));
         curve.setStrokeWidth(3);
         curve.setFill(null);
 

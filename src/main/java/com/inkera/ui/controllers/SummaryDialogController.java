@@ -29,7 +29,7 @@ public class SummaryDialogController {
         summaryArea.setEditable(!isEditable);
         
         if (!isEditable) { // Düzenleme moduna geçildi
-            summaryArea.setStyle("-fx-control-inner-background: #333333; -fx-text-fill: white; -fx-font-size: 15px; -fx-background-color: transparent; -fx-border-color: #4caf50; -fx-border-radius: 5;");
+            summaryArea.setStyle("-fx-control-inner-background: #333333; -fx-text-fill: white; -fx-font-size: 15px; -fx-background-color: transparent; -fx-border-color: #fdb547; -fx-border-radius: 5;");
             editButton.setVisible(false);
             saveButton.setVisible(true);
             saveButton.setManaged(true);

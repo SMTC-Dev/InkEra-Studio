@@ -26,7 +26,7 @@
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
             <ProgressBar fx:id="progressBar" prefWidth="500.0" progress="0.0" 
-                         style="-fx-accent: #388E3C; -fx-control-inner-background: black; -fx-text-box-border: black;" />
+                         style="-fx-accent: #e09628; -fx-control-inner-background: black; -fx-text-box-border: black;" />
             <Label fx:id="statusLabel" text="Loading..." textFill="LIGHTGRAY" />
         </VBox>
     </bottom>

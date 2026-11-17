@@ -29,6 +29,15 @@ public:
         pixels.resize(static_cast<size_t>(w) * static_cast<size_t>(h), 0x00000000);
     }
 
+    // Kopya kurucu (Undo/Redo snapshot kopyalaması için)
+    Layer(const Layer& other)
+        : width(other.width),
+          height(other.height),
+          pixels(other.pixels),
+          visible(other.visible),
+          opacity(other.opacity),
+          name(other.name) {}
+
     void clear() {
         std::fill(pixels.begin(), pixels.end(), 0x00000000);
     }
@@ -36,14 +45,14 @@ public:
     void setPixel(int x, int y, uint32_t colorArgb) {
         if (x >= 0 && x < width && y >= 0 && y < height) {
             pixels[static_cast<size_t>(y) * static_cast<size_t>(width)
-                 + static_cast<size_t>(x)] = colorArgb;
+                   + static_cast<size_t>(x)] = colorArgb;
         }
     }
 
     uint32_t getPixel(int x, int y) const {
         if (x >= 0 && x < width && y >= 0 && y < height) {
             return pixels[static_cast<size_t>(y) * static_cast<size_t>(width)
-                        + static_cast<size_t>(x)];
+                          + static_cast<size_t>(x)];
         }
 
         return 0;

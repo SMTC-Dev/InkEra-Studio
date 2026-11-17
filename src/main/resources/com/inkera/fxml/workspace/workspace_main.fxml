@@ -14,10 +14,13 @@
                 <VBox alignment="TOP_CENTER" style="-fx-padding: 15 0 0 0;">
                     <Button fx:id="leftMenuBtn" text="≡" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 20px; -fx-cursor: hand; -fx-font-weight: bold; -fx-padding: 0;" />
                 </VBox>
-                <VBox alignment="CENTER" spacing="20" VBox.vgrow="ALWAYS">
-                    <Button text="✎" style="-fx-background-color: #333; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 4; -fx-min-width: 32; -fx-min-height: 32;" />
-                    <Button text="▱" style="-fx-background-color: transparent; -fx-text-fill: #aaa; -fx-cursor: hand; -fx-min-width: 32; -fx-min-height: 32;" />
-                    <Button text="🪣" style="-fx-background-color: transparent; -fx-text-fill: #aaa; -fx-cursor: hand; -fx-min-width: 32; -fx-min-height: 32;" />
+                <VBox alignment="CENTER" spacing="14" VBox.vgrow="ALWAYS">
+                    <Button fx:id="pencilToolBtn" text="✎" style="-fx-background-color: #fdb547; -fx-text-fill: #181819; -fx-cursor: hand; -fx-background-radius: 6; -fx-min-width: 34; -fx-min-height: 34; -fx-font-size: 15px;" />
+                    <Button fx:id="eraserToolBtn" text="▱" style="-fx-background-color: transparent; -fx-text-fill: #aaa; -fx-cursor: hand; -fx-background-radius: 6; -fx-min-width: 34; -fx-min-height: 34; -fx-font-size: 15px;" />
+                    <Button fx:id="bucketToolBtn" text="🪣" style="-fx-background-color: transparent; -fx-text-fill: #aaa; -fx-cursor: hand; -fx-background-radius: 6; -fx-min-width: 34; -fx-min-height: 34; -fx-font-size: 15px;" />
+                    <Region style="-fx-background-color: #3d3d3d; -fx-min-height: 1; -fx-max-height: 1; -fx-max-width: 26;" />
+                    <Button fx:id="undoBtn" text="↶" style="-fx-background-color: transparent; -fx-text-fill: #ccc; -fx-cursor: hand; -fx-background-radius: 6; -fx-min-width: 34; -fx-min-height: 34; -fx-font-size: 16px;" />
+                    <Button fx:id="redoBtn" text="↷" style="-fx-background-color: transparent; -fx-text-fill: #ccc; -fx-cursor: hand; -fx-background-radius: 6; -fx-min-width: 34; -fx-min-height: 34; -fx-font-size: 16px;" />
                 </VBox>
             </VBox>
         </left>
@@ -34,26 +37,87 @@
                     <Button fx:id="rightMenuBtn" text="≡" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 20px; -fx-cursor: hand; -fx-font-weight: bold; -fx-padding: 0;" />
                 </VBox>
                 <VBox alignment="CENTER" spacing="20" VBox.vgrow="ALWAYS">
-                    <Button text="📚" style="-fx-background-color: transparent; -fx-text-fill: #aaa; -fx-cursor: hand; -fx-min-width: 32; -fx-min-height: 32;" />
+                    <Button fx:id="layersQuickBtn" text="📚" style="-fx-background-color: transparent; -fx-text-fill: #aaa; -fx-cursor: hand; -fx-min-width: 32; -fx-min-height: 32;" />
                     <Button text="⚙" style="-fx-background-color: transparent; -fx-text-fill: #aaa; -fx-cursor: hand; -fx-min-width: 32; -fx-min-height: 32;" />
                 </VBox>
             </VBox>
         </right>
     </BorderPane>
     <AnchorPane pickOnBounds="false">
+        <!-- SOL PANEL: ARAÇ & FIRÇA AYARLARI -->
         <VBox fx:id="leftFloatingPanel" AnchorPane.leftAnchor="45" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" minWidth="280" maxWidth="280" style="-fx-background-color: #2d2d2d; -fx-border-color: #444; -fx-border-width: 0 1 0 0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 15, 0, 5, 0);">
             <HBox alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #252526; -fx-border-color: #333; -fx-border-width: 0 0 1 0;">
-                <Label text="Araç Ayarları" style="-fx-text-fill: #e0e0e0; -fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Label text="Araç &amp; Fırça Ayarları" style="-fx-text-fill: #e0e0e0; -fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="activeToolBadge" text="KALEM" style="-fx-background-color: #fdb547; -fx-text-fill: #181819; -fx-font-size: 10px; -fx-font-weight: bold; -fx-padding: 2 6 2 6; -fx-background-radius: 4;" />
             </HBox>
+
+            <VBox spacing="16" style="-fx-padding: 16;">
+                <!-- FIRÇA BOYUTU -->
+                <VBox spacing="8">
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Fırça Çapı (Boyut)" style="-fx-text-fill: #ccc; -fx-font-size: 12px; -fx-font-weight: bold;" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="brushSizeValueLabel" text="6 px" style="-fx-text-fill: #fdb547; -fx-font-weight: bold; -fx-font-size: 12px;" />
+                    </HBox>
+                    <Slider fx:id="brushSizeSlider" min="1" max="120" value="6" />
+                    <HBox spacing="6" alignment="CENTER">
+                        <Button fx:id="sizePreset2Btn" text="2px" style="-fx-background-color: #3c3f41; -fx-text-fill: #ddd; -fx-font-size: 11px; -fx-cursor: hand; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                        <Button fx:id="sizePreset6Btn" text="6px" style="-fx-background-color: #3c3f41; -fx-text-fill: #ddd; -fx-font-size: 11px; -fx-cursor: hand; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                        <Button fx:id="sizePreset15Btn" text="15px" style="-fx-background-color: #3c3f41; -fx-text-fill: #ddd; -fx-font-size: 11px; -fx-cursor: hand; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                        <Button fx:id="sizePreset35Btn" text="35px" style="-fx-background-color: #3c3f41; -fx-text-fill: #ddd; -fx-font-size: 11px; -fx-cursor: hand; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                        <Button fx:id="sizePreset70Btn" text="70px" style="-fx-background-color: #3c3f41; -fx-text-fill: #ddd; -fx-font-size: 11px; -fx-cursor: hand; -fx-background-radius: 4;" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                    </HBox>
+                </VBox>
+
+                <Region style="-fx-background-color: #3d3d3d; -fx-min-height: 1; -fx-max-height: 1;" />
+
+                <!-- MÜREKKEP RENGİ VE MANGA TONLARI -->
+                <VBox spacing="8">
+                    <Label text="Mürekkep Rengi &amp; Manga Tonları" style="-fx-text-fill: #ccc; -fx-font-size: 12px; -fx-font-weight: bold;" />
+                    <ColorPicker fx:id="brushColorPicker" maxWidth="Infinity" style="-fx-background-color: #3c3f41; -fx-color-label-visible: true;" />
+                    <HBox spacing="8" alignment="CENTER_LEFT" style="-fx-padding: 4 0 0 0;">
+                        <Button fx:id="toneBlackBtn" style="-fx-background-color: #000000; -fx-border-color: #666; -fx-border-radius: 4; -fx-background-radius: 4; -fx-min-width: 36; -fx-min-height: 26; -fx-cursor: hand;" />
+                        <Button fx:id="toneDarkGrayBtn" style="-fx-background-color: #404040; -fx-border-color: #666; -fx-border-radius: 4; -fx-background-radius: 4; -fx-min-width: 36; -fx-min-height: 26; -fx-cursor: hand;" />
+                        <Button fx:id="toneMidGrayBtn" style="-fx-background-color: #808080; -fx-border-color: #666; -fx-border-radius: 4; -fx-background-radius: 4; -fx-min-width: 36; -fx-min-height: 26; -fx-cursor: hand;" />
+                        <Button fx:id="toneLightGrayBtn" style="-fx-background-color: #c0c0c0; -fx-border-color: #666; -fx-border-radius: 4; -fx-background-radius: 4; -fx-min-width: 36; -fx-min-height: 26; -fx-cursor: hand;" />
+                        <Button fx:id="toneWhiteBtn" style="-fx-background-color: #ffffff; -fx-border-color: #666; -fx-border-radius: 4; -fx-background-radius: 4; -fx-min-width: 36; -fx-min-height: 26; -fx-cursor: hand;" />
+                    </HBox>
+                </VBox>
+
+                <Region style="-fx-background-color: #3d3d3d; -fx-min-height: 1; -fx-max-height: 1;" />
+
+                <!-- KISAYOL REHBERİ -->
+                <VBox spacing="4" style="-fx-background-color: #232324; -fx-padding: 10; -fx-background-radius: 6;">
+                    <Label text="Klavye Kısayolları" style="-fx-text-fill: #aaa; -fx-font-weight: bold; -fx-font-size: 11px;" />
+                    <Label text="• B : Kalem   |   E : Silgi   |   G : Kova" style="-fx-text-fill: #888; -fx-font-size: 11px;" />
+                    <Label text="• [ / ] : Fırça Çapını Küçült / Büyüt" style="-fx-text-fill: #888; -fx-font-size: 11px;" />
+                    <Label text="• Ctrl+Z / Ctrl+Y : Geri Al / İleri Al" style="-fx-text-fill: #888; -fx-font-size: 11px;" />
+                    <Label text="• Ctrl+S : Kaydet   |   Ctrl+E : PNG Çıktı" style="-fx-text-fill: #888; -fx-font-size: 11px;" />
+                </VBox>
+                <Button fx:id="exportPngBtn" text="📷 PNG Olarak Dışa Aktar (Ctrl+E)" maxWidth="Infinity"
+                        style="-fx-background-color: #e09628; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px; -fx-padding: 10; -fx-background-radius: 6; -fx-cursor: hand;" />
+            </VBox>
         </VBox>
+
+        <!-- SAĞ PANEL: KATMANLAR & OPUKLIK -->
         <VBox fx:id="rightFloatingPanel" AnchorPane.rightAnchor="45" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" minWidth="280" maxWidth="280" style="-fx-background-color: #2d2d2d; -fx-border-color: #444; -fx-border-width: 0 0 0 1; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 15, 0, -5, 0);">
             <HBox alignment="CENTER_LEFT" style="-fx-padding: 15; -fx-background-color: #252526; -fx-border-color: #333; -fx-border-width: 0 0 1 0;">
                 <Label text="Katmanlar (Layers)" style="-fx-text-fill: #e0e0e0; -fx-font-weight: bold; -fx-font-size: 14px;"/>
                 <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="addLayerBtn" text="+" style="-fx-background-color: #444; -fx-text-fill: white; -fx-cursor: hand;" />
+                <Button fx:id="addLayerBtn" text="+" style="-fx-background-color: #fdb547; -fx-text-fill: #181819; -fx-font-weight: bold; -fx-cursor: hand; -fx-background-radius: 4;" />
             </HBox>
+
+            <VBox spacing="6" style="-fx-padding: 12 12 4 12; -fx-background-color: #282829; -fx-border-color: #383838; -fx-border-width: 0 0 1 0;">
+                <HBox alignment="CENTER_LEFT">
+                    <Label text="Seçili Katman Opaklığı" style="-fx-text-fill: #ccc; -fx-font-size: 12px; -fx-font-weight: bold;" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="layerOpacityValueLabel" text="100%" style="-fx-text-fill: #fdb547; -fx-font-size: 12px; -fx-font-weight: bold;" />
+                </HBox>
+                <Slider fx:id="layerOpacitySlider" min="0" max="100" value="100" />
+            </VBox>
+
             <VBox style="-fx-padding: 10;" VBox.vgrow="ALWAYS">
-                <!-- KATMANLAR LİSTESİ -->
                 <ListView fx:id="layerListView" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent; -fx-control-inner-background: #333; -fx-control-inner-background-alt: #333; -fx-text-fill: white;" />
             </VBox>
         </VBox>

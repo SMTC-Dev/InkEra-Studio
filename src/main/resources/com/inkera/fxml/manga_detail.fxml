@@ -26,7 +26,7 @@
 
             <VBox spacing="5" alignment="CENTER">
                 <Label fx:id="titleLabel" textAlignment="CENTER" wrapText="true" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
-                <Label fx:id="authorLabel" style="-fx-text-fill: #4caf50; -fx-font-weight: bold;"/>
+                <Label fx:id="authorLabel" style="-fx-text-fill: #fdb547; -fx-font-weight: bold;"/>
             </VBox>
 
             <FlowPane fx:id="tagsFlowPane" hgap="10" vgap="10" alignment="CENTER" onMouseClicked="#handleEditTags" style="-fx-cursor: hand; -fx-padding: 10; min-height: 40px;"/>
@@ -41,7 +41,7 @@
                     <Label fx:id="totalChaptersLabel" style="-fx-text-fill: #666; -fx-font-size: 12px;"/>
                 </VBox>
                 <Region HBox.hgrow="ALWAYS"/>
-                <Button text="%mangadetail.addChapter" onAction="#handleAddChapter" style="-fx-background-color: #4caf50; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+                <Button text="%mangadetail.addChapter" onAction="#handleAddChapter" style="-fx-background-color: #fdb547; -fx-text-fill: #181819; -fx-cursor: hand; -fx-font-weight: bold; -fx-padding: 10 20;"/>
             </HBox>
 
             <ScrollPane fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER">

@@ -13,7 +13,7 @@
       xmlns:fx="http://javafx.com/fxml/1" 
       fx:controller="com.inkera.ui.controllers.NewProjectController"
       stylesheets="@../styles/style.css"
-      style="-fx-background-color: #2b2b2b; -fx-border-color: #4caf50; -fx-border-width: 1;">
+      style="-fx-background-color: #2b2b2b; -fx-border-color: #fdb547; -fx-border-width: 1;">
 
     <VBox spacing="15" prefWidth="300" style="-fx-padding: 25;">
         <Label text="%newproject.title" style="-fx-font-size: 18px; -fx-text-fill: white; -fx-font-weight: bold;"/>
@@ -39,7 +39,7 @@
                 <Button text="%newproject.cancelButton" onAction="#handleCancel" 
                         style="-fx-background-color: transparent; -fx-text-fill: #aaaaaa; -fx-border-color: #555; -fx-border-radius: 3; -fx-cursor: hand;"/>
                 <Button text="%newproject.createButton" onAction="#handleCreate" defaultButton="true"
-                        style="-fx-background-color: #4caf50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 3; -fx-cursor: hand;"/>
+                        style="-fx-background-color: #fdb547; -fx-text-fill: #181819; -fx-font-weight: bold; -fx-background-radius: 3; -fx-cursor: hand;"/>
             </HBox>
         </VBox>
     </VBox>

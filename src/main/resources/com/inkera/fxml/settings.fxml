@@ -70,7 +70,7 @@
                                     <HBox alignment="CENTER_LEFT" spacing="10">
                                         <Label text="%settings.tablet.smoothing" style="-fx-text-fill: #e0e0e0; -fx-font-weight: bold; -fx-font-size: 14px;"/>
                                         <Region HBox.hgrow="ALWAYS" />
-                                        <Label fx:id="smoothingValLabel" text="6" style="-fx-text-fill: #4caf50; -fx-font-weight: bold;"/>
+                                        <Label fx:id="smoothingValLabel" text="6" style="-fx-text-fill: #fdb547; -fx-font-weight: bold;"/>
                                     </HBox>
                                     <Slider fx:id="smoothingSlider" min="0" max="20" value="6" style="-fx-padding: 10 0;" />
                                     <Label text="%settings.tablet.smoothing.desc" style="-fx-text-fill: #888; -fx-font-size: 11px;"/>
@@ -78,7 +78,7 @@
 
                                 <VBox spacing="10" style="-fx-background-color: #1e1e1e; -fx-padding: 20; -fx-background-radius: 6; -fx-border-color: #333; -fx-border-radius: 6;">
                                     <Label text="%settings.tablet.testarea" style="-fx-text-fill: #888; -fx-font-weight: bold;"/>
-                                    <ProgressBar fx:id="pressureTestBar" progress="0.0" prefWidth="600" style="-fx-accent: #4caf50;" />
+                                    <ProgressBar fx:id="pressureTestBar" progress="0.0" prefWidth="600" style="-fx-accent: #fdb547;" />
                                 </VBox>
 
                             </VBox>
